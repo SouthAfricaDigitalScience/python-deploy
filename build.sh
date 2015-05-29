@@ -19,5 +19,5 @@ fi
 ls $WORKSPACE
 # Again with the frikkin naming conventions
 cd $WORKSPACE/Python-$VERSION
-./configure --prefix=$SOFT_DIR
+./configure --prefix=$SOFT_DIR --enable-shared
 make -j 8
