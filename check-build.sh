@@ -1,7 +1,9 @@
 #!/bin/bash
 module load ci
 echo "checking $NAME"
-cd $WORKSPACE/$NAME-$VERSION
+#cd $WORKSPACE/$NAME-$VERSION
+cd $WORKSPACE/Python-$VERSION
+
 
 echo $?
 
