@@ -13,8 +13,8 @@ if [[ ! -s $SRC_DIR/$SOURCE_FILE ]] ; then
   ls $SRC_DIR
   mkdir -p $SRC_DIR
   wget --no-check-certificate https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz -O $SRC_DIR/$SOURCE_FILE
-  tar -xzf $SRC_DIR/$SOURCE_FILE -C $WORKSPACE
 fi
+tar -xzf $SRC_DIR/$SOURCE_FILE -C $WORKSPACE
 # echo $NAME | tr '[:upper:]' '[:lower:]'
 ls $WORKSPACE
 # Again with the frikkin naming conventions
