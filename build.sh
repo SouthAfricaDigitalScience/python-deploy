@@ -7,7 +7,7 @@ echo $SRC_DIR
 mkdir -p $SOFT_DIR $WORKSPACE $SRC_DIR
 echo $NAME
 echo $VERSION
-module load gcc/4.8.2
+module load gcc/4.8.4
 if [[ ! -s $SRC_DIR/$SOURCE_FILE ]] ; then
   echo "looks like the tarball isn't there yet"
   ls $SRC_DIR
