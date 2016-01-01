@@ -30,5 +30,7 @@ tar -xz --keep-newer-files -f ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 # echo $NAME | tr '[:upper:]' '[:lower:]'
 # Again with the frikkin naming conventions
 cd ${WORKSPACE}/Python-${VERSION}
-./configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+mkdir build-${BUILD_NUMBER}
+cd build-${BUILD_NUMBER}
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
