@@ -4,11 +4,11 @@ module load ci
 module add zlib
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
-cd ${WORKSPACE}/Python-${VERSION}
+cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 # Python site packages are separated out by major version numbers, so we extract that to use it later
 # in the PYTHONPATH
 VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
-make check
+make test
 echo $?
 
 make install
