@@ -8,10 +8,16 @@ cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 # Python site packages are separated out by major version numbers, so we extract that to use it later
 # in the PYTHONPATH
 VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
-make test
+if make test 2> tests.out
+then : tests have passed
+else : tests have failed see test.out
+fi
 echo $?
-
-make install
+# "Warning
+# make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
+# only installs exec_prefix/bin/pythonversion.
+# see : https://docs.python.org/2/using/unix.html#building-python
+make altinstall
 mkdir -p modules
 (
 cat <<MODULE_FILE
