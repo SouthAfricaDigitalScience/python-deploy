@@ -17,7 +17,8 @@ echo $?
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
 # only installs exec_prefix/bin/pythonversion.
 # see : https://docs.python.org/2/using/unix.html#building-python
-make altinstall
+make install
+# alt install seemd to have not installed the binaries.
 mkdir -p modules
 (
 cat <<MODULE_FILE
@@ -33,7 +34,7 @@ module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION       $VERSION
 setenv       PYTHON_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-#setenv       PYTHONHOME        $::env(PYTHON_DIR)
+setenv       PYTHONHOME        $::env(PYTHON_DIR)
 setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
 prepend-path PATH              $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
