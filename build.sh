@@ -3,6 +3,11 @@
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
 module add zlib
+module add bzlib
+module add tcltk
+module add sqlite
+module add readline
+module add ncurses
 module add gcc/${GCC_VERSION}
 
 echo ${SOFT_DIR}

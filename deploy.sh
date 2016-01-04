@@ -3,6 +3,11 @@
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add deploy
 module add zlib
+module add bzlib
+module add tcltk
+module add sqlite
+module add readline
+module add ncurses
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 make distclean

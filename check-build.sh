@@ -2,6 +2,11 @@
 . /etc/profile.d/modules.sh
 module load ci
 module add zlib
+module add bzlib
+module add tcltk
+module add sqlite
+module add readline
+module add ncurses
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
