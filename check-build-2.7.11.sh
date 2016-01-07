@@ -43,7 +43,8 @@ setenv       PYTHONHOME        $::env(PYTHON_DIR)
 setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
 prepend-path PATH              $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
-prepend-path GCC_INCLUDE_DIR   $::env(PYTHON_DIR)/include
+prepend-path CFLAGS            "-I$::env(PYTHON_DIR)/include"
+prepend-path LDFLAGS           "-L$::env(PYTHON_DIR)/lib"
 MODULE_FILE
 ) > modules/$VERSION-gcc-${GCC_VERSION}
 
