@@ -2,7 +2,7 @@
 . /etc/profile.d/modules.sh
 module load ci
 module add zlib
-module add bzlib
+module add bzip2
 module add tcltk
 module add sqlite
 module add readline
@@ -53,20 +53,6 @@ module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
 python --version
-
-### time to install setuptools
-echo "Setting up setuptools"
-cd $WORKSPACE/Python-${VERSION}
-# First, download the setuptools package and unpack it
-wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.3.2.tar.gz
-tar xfz setuptools-18.3.2.tar.gz
-python setup.py install --prefix=${PYTHON_DIR}
-
-## time to install pip - this also has to go into the python path.
-echo "Getting pip"
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py --install-option=--prefix=${PYTHON_DIR}
-
 ## run some checks
 echo "checking easy_install and pip"
 

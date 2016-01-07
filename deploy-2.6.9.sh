@@ -56,7 +56,6 @@ python --version
 ### time to install setuptools
 echo "Setting up setuptools"
 cd $WORKSPACE/Python-${VERSION}
-# First, download the setuptools package and unpack it
 python setup.py install --prefix=${PYTHON_DIR}
 
 ## time to install pip - this also has to go into the python path.

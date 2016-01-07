@@ -52,17 +52,6 @@ module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
 python --version
-
-### time to install setuptools
-echo "Setting up setuptools"
-cd $WORKSPACE/Python-${VERSION}
-# First, download the setuptools package and unpack it
-python setup.py install --prefix=${PYTHON_DIR}
-
-## time to install pip - this also has to go into the python path.
-echo "Setting up pip"
-python get-pip.py --install-option=--prefix=${PYTHON_DIR}
-
 ## run some checks
 echo "checking easy_install and pip"
 

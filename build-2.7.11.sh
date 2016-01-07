@@ -1,9 +1,9 @@
-#!/bin/bash -e
+  #!/bin/bash -e
 . /etc/profile.d/modules.sh
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
 module add zlib
-module add bzlib
+module add bzip2
 module add tcltk
 module add sqlite
 module add readline
@@ -37,5 +37,18 @@ tar -xz --keep-newer-files -f ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
+export CFLAGS="-I${SQLITE_DIR}/include \
+ -I${ZLIB_DIR}/include/ \
+ -I${BZIP_DIR}/include/ \
+ -I${READLINE_DIR}/include/ \
+ -I ${TCL_DIR}/include/ \
+ -I${NCURSES_DIR}/include/"
+
+export LDFLAGS="-L${SQLITE_DIR}/lib \
+-L${ZLIB_DIR}/lib/ \
+-L${BZLIB_DIR}/lib/ \
+-L${READLINE_DIR}/lib/ \
+-L${TCL_DIR}/lib/ \
+-L${NCURSES_DIR}/lib/"
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make

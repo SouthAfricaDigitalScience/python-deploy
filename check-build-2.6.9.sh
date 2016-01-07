@@ -2,7 +2,7 @@
 . /etc/profile.d/modules.sh
 module load ci
 module add zlib
-module add bzlib
+module add bzip2
 module add tcltk
 module add sqlite
 module add readline
@@ -23,6 +23,8 @@ echo $?
 # only installs exec_prefix/bin/pythonversion.
 # see : https://docs.python.org/2/using/unix.html#building-python
 make install
+
+ls ${SOFT_DIR}/bin
 # alt install seemd to have not installed the binaries.
 mkdir -p modules
 (
@@ -55,17 +57,29 @@ which python
 python --version
 
 ### time to install setuptools
+## According to http://python-packaging-user-guide.readthedocs.org/en/latest/installing/#install-pip-setuptools-and-wheel
+# if you have Python 2 >=2.7.9 or Python 3 >=3.4 installed from python.org, you will already have pip and setuptools,
+# but will need to upgrade to the latest version:
+# pip install -U pip setuptools
 echo "Setting up setuptools"
 cd $WORKSPACE/Python-${VERSION}
 # First, download the setuptools package and unpack it
-wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.3.2.tar.gz
-tar xfz setuptools-18.3.2.tar.gz
+SETUPTOOLS=setuptools-18.3.2.tar.gz
+if [ ! -e ${SRC_DIR}/${SETUPTOOLS}.lock ] && [ ! -s ${SRC_DIR}/${SETUPTOOLS} ] ; then
+  touch  ${SRC_DIR}/${SETUPTOOLS}.lock
+  echo "looks like the tarball isn't there yet"
+  wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.3.2.tar.gz -O ${SRC_DIR}/${SETUPTOOLS}
+  echo "releasing lock"
+  rm -v ${SRC_DIR}/${SETUPTOOLS}.lock
+elif [ -e ${SRC_DIR}/${SETUPTOOLS}.lock ] ; then
+  # Someone else has the file, wait till it's released
+  while [ -e ${SRC_DIR}/${SETUPTOOLS}.lock ] ; do
+    echo " There seems to be a download currently under way, will check again in 5 sec"
+    sleep 5
+  done
+fi
+tar xfz ${SRC_DIR}/${SETUPTOOLS} -C ${}
 python setup.py install --prefix=${PYTHON_DIR}
-
-## time to install pip - this also has to go into the python path.
-echo "Getting pip"
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py --install-option=--prefix=${PYTHON_DIR}
 
 ## run some checks
 echo "checking easy_install and pip"

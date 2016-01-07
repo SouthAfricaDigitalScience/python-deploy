@@ -63,6 +63,8 @@ tar xfz setuptools-18.3.2.tar.gz
 python setup.py install --prefix=${PYTHON_DIR}
 
 ## time to install pip - this also has to go into the python path.
+
+# checkif PIP is there.
 echo "Getting pip"
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py --install-option=--prefix=${PYTHON_DIR}
