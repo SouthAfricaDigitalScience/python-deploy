@@ -57,5 +57,5 @@ python3 --version
 echo "PYTHONHOME is $PYTHONHOME"
 echo "checking easy_install and pip"
 
-which easy_install
-which pip
+which easy_install-${VERSION_MAJOR}
+which pip${VERSION_MAJOR}

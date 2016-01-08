@@ -62,6 +62,7 @@ python setup.py install --prefix=${PYTHON_DIR}
 echo "Setting up pip"
 python get-pip.py --install-option=--prefix=${PYTHON_DIR}
 
+echo "PYTHONHOME is $PYTHONHOME"
 ## run some checks
 echo "checking easy_install and pip"
 
