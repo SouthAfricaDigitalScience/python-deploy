@@ -3,7 +3,7 @@
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add deploy
 module add zlib
-module add bzlib
+module add bzip2
 module add tcltk
 module add sqlite
 module add readline
@@ -36,7 +36,7 @@ module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION       $VERSION
 setenv       PYTHON_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-#setenv       PYTHONHOME        $::env(PYTHON_DIR)
+setenv       PYTHONHOME        $::env(PYTHON_DIR)
 setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
 prepend-path PATH              $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
@@ -54,6 +54,7 @@ which python3
 python3 --version
 
 ## run some checks
+echo "PYTHONHOME is $PYTHONHOME"
 echo "checking easy_install and pip"
 
 which easy_install

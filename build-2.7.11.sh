@@ -50,5 +50,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${READLINE_DIR}/lib/ \
 -L${TCL_DIR}/lib/ \
 -L${NCURSES_DIR}/lib/"
-../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--enable-shared \
+--with-ensurepip=upgrade 
 make
