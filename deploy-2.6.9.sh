@@ -1,4 +1,4 @@
-#!/bin/bash -e
+  #!/bin/bash -e
 . /etc/profile.d/modules.sh
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add deploy
@@ -11,7 +11,7 @@ module add ncurses
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
-./configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
