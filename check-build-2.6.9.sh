@@ -24,7 +24,7 @@ echo $?
 # see : https://docs.python.org/2/using/unix.html#building-python
 make install
 
-ls ${SOFT_DIR}/bin
+ls ${SOFT_DIR}-gcc-${GCC_VERSION}/bin
 # alt install seemd to have not installed the binaries.
 mkdir -p modules
 (
