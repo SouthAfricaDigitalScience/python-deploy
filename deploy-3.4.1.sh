@@ -10,8 +10,8 @@ module add readline
 module add ncurses
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
-make distclean
-./configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+rm -rf *
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it

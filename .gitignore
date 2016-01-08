@@ -1,0 +1,4 @@
+Python*
+*.tgz
+*.tar.gz
+setuptools*

@@ -65,11 +65,11 @@ python --version
 echo "Setting up setuptools"
 cd $WORKSPACE/Python-${VERSION}
 # First, download the setuptools package and unpack it
-SETUPTOOLS=setuptools-18.3.2.tar.gz
+SETUPTOOLS=setuptools-18.3.2
 if [ ! -e ${SRC_DIR}/${SETUPTOOLS}.lock ] && [ ! -s ${SRC_DIR}/${SETUPTOOLS} ] ; then
   touch  ${SRC_DIR}/${SETUPTOOLS}.lock
   echo "looks like the tarball isn't there yet"
-  wget https://pypi.python.org/packages/source/s/setuptools/setuptools-18.3.2.tar.gz -O ${SRC_DIR}/${SETUPTOOLS}
+  wget https://pypi.python.org/packages/source/s/setuptools/${SETUPTOOLS}.tar.gz -O ${SRC_DIR}/${SETUPTOOLS}.tar.gz
   echo "releasing lock"
   rm -v ${SRC_DIR}/${SETUPTOOLS}.lock
 elif [ -e ${SRC_DIR}/${SETUPTOOLS}.lock ] ; then
@@ -79,7 +79,8 @@ elif [ -e ${SRC_DIR}/${SETUPTOOLS}.lock ] ; then
     sleep 5
   done
 fi
-tar xfz ${SRC_DIR}/${SETUPTOOLS} -C ${}
+tar xfz ${SRC_DIR}/${SETUPTOOLS}.tar.gz -C ${WORKSPACE}/Python-${VERSION}
+cd ${WORKSPACE}/Python-${VERSION}/${SETUPTOOLS}
 python setup.py install --prefix=${PYTHON_DIR}
 
 ## run some checks
