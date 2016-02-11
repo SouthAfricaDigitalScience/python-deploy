@@ -15,8 +15,6 @@ module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 ls
 make clean
-rm -rf *
-
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
 # "Warning
