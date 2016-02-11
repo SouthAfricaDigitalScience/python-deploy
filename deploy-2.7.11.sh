@@ -13,7 +13,9 @@ module add mpfr
 module add mpc
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
-rm -rf *
+ls
+make distclean
+
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
 # "Warning
