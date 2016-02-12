@@ -15,8 +15,11 @@ module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 ls
 make clean
-../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--enable-shared \
+--with-ensurepip=upgrade
 make
+
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
 # only installs exec_prefix/bin/pythonversion.
@@ -55,6 +58,9 @@ cp modules/${VERSION}-gcc-${GCC_VERSION} ${LIBRARIES_MODULES}/${NAME}
 module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
+
+python -m ensurepip
+
 python --version
 ## run some checks
 echo "PYTHONHOME is $PYTHONHOME"
