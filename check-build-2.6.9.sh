@@ -7,12 +7,31 @@ module add tcltk
 module add sqlite
 module add readline
 module add ncurses
+module add openssl/1.0.2g
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 # Python site packages are separated out by major version numbers, so we extract that to use it later
 # in the PYTHONPATH
 VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
+
+export CFLAGS="-I${SQLITE_DIR}/include \
+  -I${OPENSSL_DIR}/include \
+ -I${ZLIB_DIR}/include/ \
+ -I${BZIP_DIR}/include/ \
+ -I${READLINE_DIR}/include/ \
+ -I${TCL_DIR}/include/ \
+ -I${NCURSES_DIR}/include/"
+
+export LDFLAGS="-L${SQLITE_DIR}/lib \
+-L${OPENSSL_DIR}/lib \
+-L${ZLIB_DIR}/lib/ \
+-L${BZLIB_DIR}/lib/ \
+-L${READLINE_DIR}/lib/ \
+-L${TCL_DIR}/lib/ \
+-L${NCURSES_DIR}/lib/"
+
+
 if make test 2> tests.out
 then : tests have passed
 else : tests have failed see test.out

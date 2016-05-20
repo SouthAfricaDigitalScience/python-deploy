@@ -8,9 +8,28 @@ module add tcltk
 module add sqlite
 module add readline
 module add ncurses
+module add openssl/1.0.2g
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
+
+export CFLAGS="-I${SQLITE_DIR}/include \
+ -I${OPENSSL_DIR}/include \
+ -I${ZLIB_DIR}/include/ \
+ -I${BZIP_DIR}/include/ \
+ -I${READLINE_DIR}/include/ \
+ -I${TCL_DIR}/include/ \
+ -I${NCURSES_DIR}/include/"
+
+export LDFLAGS="-L${SQLITE_DIR}/lib \
+-L${OPENSSL_DIR}/lib \
+-L${ZLIB_DIR}/lib/ \
+-L${BZLIB_DIR}/lib/ \
+-L${READLINE_DIR}/lib/ \
+-L${TCL_DIR}/lib/ \
+-L${NCURSES_DIR}/lib/"
+
+
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
 make
 # "Warning
@@ -55,7 +74,7 @@ python --version
 
 ### time to install setuptools
 echo "Setting up setuptools"
-cd $WORKSPACE/Python-${VERSION}
+cd $WORKSPACE/Python-${VERSION}/${SETUPTOOLS}
 python setup.py install --prefix=${PYTHON_DIR}
 
 ## time to install pip - this also has to go into the python path.

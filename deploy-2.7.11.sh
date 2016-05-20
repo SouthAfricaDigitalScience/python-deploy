@@ -11,6 +11,7 @@ module add ncurses
 module add gmp
 module add mpfr
 module add mpc
+module add openssl/1.0.2g
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 ls

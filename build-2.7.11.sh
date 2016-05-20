@@ -8,6 +8,7 @@ module add tcltk
 module add sqlite
 module add readline
 module add ncurses
+module add openssl/1.0.2g
 module add gcc/${GCC_VERSION}
 
 echo ${SOFT_DIR}
@@ -52,5 +53,5 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --enable-shared \
---with-ensurepip=upgrade 
+--with-ensurepip=upgrade
 make

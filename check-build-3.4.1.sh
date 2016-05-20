@@ -7,6 +7,7 @@ module add tcltk
 module add sqlite
 module add readline
 module add ncurses
+module add openssl/1.0.2g
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
