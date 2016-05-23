@@ -88,7 +88,7 @@ SETUPTOOLS=setuptools-18.3.2
 if [ ! -e ${SRC_DIR}/${SETUPTOOLS}.lock ] && [ ! -s ${SRC_DIR}/${SETUPTOOLS} ] ; then
   touch  ${SRC_DIR}/${SETUPTOOLS}.lock
   echo "looks like the tarball isn't there yet"
-  wget https://pypi.python.org/packages/source/s/setuptools/${SETUPTOOLS}.tar.gz -O ${SRC_DIR}/${SETUPTOOLS}.tar.gz
+  wget --no-check-certificate https://pypi.python.org/packages/source/s/setuptools/${SETUPTOOLS}.tar.gz -O ${SRC_DIR}/${SETUPTOOLS}.tar.gz
   echo "releasing lock"
   rm -v ${SRC_DIR}/${SETUPTOOLS}.lock
 elif [ -e ${SRC_DIR}/${SETUPTOOLS}.lock ] ; then
