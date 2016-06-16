@@ -13,7 +13,7 @@ echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 # Python site packages are separated out by major version numbers, so we extract that to use it later
 # in the PYTHONPATH
-VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
+export VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
 
 export CFLAGS="-I${SQLITE_DIR}/include \
   -I${OPENSSL_DIR}/include \
@@ -59,9 +59,9 @@ conflict python
 module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION       $VERSION
-setenv       PYTHON_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
+setenv       PYTHON_DIR        /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
 setenv       PYTHONHOME        $::env(PYTHON_DIR)
-setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
+setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python::env(VERSION_MAJOR)
 prepend-path PATH              $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
 prepend-path CFLAGS            "-I$::env(PYTHON_DIR)/include"
@@ -101,9 +101,10 @@ fi
 tar xfz ${SRC_DIR}/${SETUPTOOLS}.tar.gz -C ${WORKSPACE}/Python-${VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/${SETUPTOOLS}
 python setup.py install --prefix=${PYTHON_DIR}
-
 ## run some checks
-echo "checking easy_install and pip"
-
+echo "checking easy_install"
 which easy_install
+echo "instaslling pip"
+easy_install pip
+echo "checking pip"
 which pip
