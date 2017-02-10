@@ -30,7 +30,13 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 
 
-../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} --enable-shared
+../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--enable-shared \
+--enable-loadable-sqlite-extensions \
+--with-system-ffi \
+--with-tcltk-includes=${TCL_DIR}/include \
+--with-tcltk-libs=${TCL_DIR}/lib \
+--with-ensurepip=upgrade
 make
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
@@ -55,9 +61,9 @@ module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION       $VERSION
 setenv       PYTHON_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-setenv       PYTHONHOME        $::env(PYTHON_DIR)
-setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
-prepend-path PATH              $::env(PYTHON_DIR)/bin
+setenv       PYTHONHOME               $::env(PYTHON_DIR)
+setenv       PYTHONPATH                 $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
+prepend-path PATH                           $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
 prepend-path GCC_INCLUDE_DIR   $::env(PYTHON_DIR)/include
 MODULE_FILE
@@ -67,6 +73,7 @@ MODULE_FILE
 
 mkdir -p ${LIBRARIES_MODULES}/${NAME}
 cp modules/${VERSION}-gcc-${GCC_VERSION} ${LIBRARIES_MODULES}/${NAME}
+module avail ${NAME}
 module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
@@ -77,13 +84,11 @@ echo "Setting up setuptools"
 cd $WORKSPACE/Python-${VERSION}/${SETUPTOOLS}
 python setup.py install --prefix=${PYTHON_DIR}
 
-## time to install pip - this also has to go into the python path.
-echo "Setting up pip"
-python get-pip.py --install-option=--prefix=${PYTHON_DIR}
-
-echo "PYTHONHOME is $PYTHONHOME"
+python setup.py install --prefix=${PYTHON_DIR}
 ## run some checks
-echo "checking easy_install and pip"
-
+echo "checking easy_install"
 which easy_install
-which pip
+echo "instaslling pip"
+easy_install pip-${VERSION_MAJOR}
+echo "checking pip"
+which pip${VERSION_MAJOR}

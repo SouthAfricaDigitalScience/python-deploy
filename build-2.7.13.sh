@@ -1,4 +1,4 @@
-#!/bin/bash -e
+  #!/bin/bash -e
 . /etc/profile.d/modules.sh
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
@@ -42,7 +42,7 @@ export CFLAGS="-I${SQLITE_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
- -I${TCL_DIR}/include/ \
+ -I ${TCL_DIR}/include/ \
  -I${NCURSES_DIR}/include/"
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
@@ -51,7 +51,6 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${READLINE_DIR}/lib/ \
 -L${TCL_DIR}/lib/ \
 -L${NCURSES_DIR}/lib/"
-
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --enable-shared \
 --enable-loadable-sqlite-extensions \

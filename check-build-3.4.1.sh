@@ -38,11 +38,11 @@ proc ModulesHelp { } {
 conflict python
 module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
-setenv       PYTHON_VERSION       $VERSION
-setenv       PYTHON_DIR           /apprepo/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-setenv       PYTHONHOME        $::env(PYTHON_DIR)
-setenv       PYTHONPATH        $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
-prepend-path PATH              $::env(PYTHON_DIR)/bin
+setenv       PYTHON_VERSION        $VERSION
+setenv       PYTHON_DIR                   /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
+setenv       PYTHONHOME               $::env(PYTHON_DIR)
+setenv       PYTHONPATH                 $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
+prepend-path PATH                           $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
 prepend-path GCC_INCLUDE_DIR   $::env(PYTHON_DIR)/include
 MODULE_FILE
@@ -50,6 +50,7 @@ MODULE_FILE
 
 mkdir -p $LIBRARIES_MODULES/$NAME
 cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES_MODULES/$NAME
+module avail ${NAME}
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
 which python3

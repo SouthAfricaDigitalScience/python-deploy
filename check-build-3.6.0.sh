@@ -38,7 +38,7 @@ proc ModulesHelp { } {
 conflict python
 module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
-setenv       PYTHON_VERSION       $VERSION
+setenv       PYTHON_VERSION         $VERSION
 setenv       PYTHON_DIR                 /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
 setenv       PYTHONHOME                $::env(PYTHON_DIR)
 setenv       PYTHONPATH                 $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}

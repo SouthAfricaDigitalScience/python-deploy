@@ -39,12 +39,13 @@ conflict python
 module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION       $VERSION
-setenv       PYTHON_DIR                 /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-setenv       PYTHONHOME                $::env(PYTHON_DIR)
-setenv       PYTHONPATH                 $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
-prepend-path PATH                           $::env(PYTHON_DIR)/bin
-prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
-prepend-path GCC_INCLUDE_DIR   $::env(PYTHON_DIR)/include
+setenv       PYTHON_DIR              /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
+setenv       PYTHONHOME              $::env(PYTHON_DIR)
+setenv       PYTHONPATH               $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
+prepend-path PATH                         $::env(PYTHON_DIR)/bin
+prepend-path LD_LIBRARY_PATH $::env(PYTHON_DIR)/lib
+prepend-path CFLAGS                    "-I$::env(PYTHON_DIR)/include"
+prepend-path LDFLAGS                  "-L$::env(PYTHON_DIR)/lib"
 MODULE_FILE
 ) > modules/$VERSION-gcc-${GCC_VERSION}
 
@@ -53,9 +54,8 @@ cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES_MODULES/$NAME
 module avail ${NAME}
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
-which python3
-python3 --version
-
+which python
+python --version
 ## run some checks
 echo "checking easy_install and pip"
 

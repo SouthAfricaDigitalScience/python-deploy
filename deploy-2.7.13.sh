@@ -14,8 +14,24 @@ module add mpc
 module add openssl/1.0.2g
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
-ls
-make clean
+
+export CFLAGS="-I${SQLITE_DIR}/include \
+ -I${OPENSSL_DIR}/include \
+ -I${ZLIB_DIR}/include/ \
+ -I${BZIP_DIR}/include/ \
+ -I${READLINE_DIR}/include/ \
+ -I${TCL_DIR}/include/ \
+ -I${NCURSES_DIR}/include/"
+
+export LDFLAGS="-L${SQLITE_DIR}/lib \
+-L${OPENSSL_DIR}/lib \
+-L${ZLIB_DIR}/lib/ \
+-L${BZLIB_DIR}/lib/ \
+-L${READLINE_DIR}/lib/ \
+-L${TCL_DIR}/lib/ \
+-L${NCURSES_DIR}/lib/"
+
+rm -rf *
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
@@ -23,8 +39,6 @@ make clean
 --with-tcltk-includes=${TCL_DIR}/include \
 --with-tcltk-libs=${TCL_DIR}/lib \
 --with-ensurepip=upgrade
-make
-
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
 # only installs exec_prefix/bin/pythonversion.
@@ -46,11 +60,11 @@ proc ModulesHelp { } {
 conflict python
 module add gcc/${GCC_VERSION}
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
-setenv       PYTHON_VERSION       $VERSION
+setenv       PYTHON_VERSION        $VERSION
 setenv       PYTHON_DIR           $::env(CVMFS_DIR)/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
-setenv       PYTHONHOME               $::env(PYTHON_DIR)
-setenv       PYTHONPATH                 $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
-prepend-path PATH                           $::env(PYTHON_DIR)/bin
+setenv       PYTHONHOME                $::env(PYTHON_DIR)
+setenv       PYTHONPATH                  $::env(PYTHON_DIR)/lib/python${VERSION_MAJOR}
+prepend-path PATH                            $::env(PYTHON_DIR)/bin
 prepend-path LD_LIBRARY_PATH   $::env(PYTHON_DIR)/lib
 prepend-path GCC_INCLUDE_DIR   $::env(PYTHON_DIR)/include
 MODULE_FILE
