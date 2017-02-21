@@ -62,6 +62,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 # --with-tcltk-libs="-L${TCL_DIR}/lib -ltcltk" \
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--disable-ipv6 \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
 --with-system-ffi \

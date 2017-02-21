@@ -29,6 +29,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--disable-ipv6 \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
 --with-system-ffi \
@@ -83,4 +84,4 @@ echo "checking easy_install and pip"
 which easy_install-${VERSION_MAJOR}
 which pip${VERSION_MAJOR}
 
-pip${VERSION_MAJOR} install -r requirements.txt
+pip${VERSION_MAJOR} install -r ${WORKSPACE} requirements.txt
