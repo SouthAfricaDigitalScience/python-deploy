@@ -1,0 +1,10 @@
+simplejson
+setuptools
+six
+requests
+virtualenv
+pip
+distribute
+python-dateutil
+certifi
+slackclient
