@@ -11,12 +11,23 @@ module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 
-export CFLAGS="-I${SQLITE_DIR}/include \
+export CXXFLAGS="-g3 -fsanitize=undefined -fno-sanitize=vptr -DPY_FORMAT_LONG_LONG=1"
+export CFLAGS="
+ -fsanitize=undefined \
+ -DPY_FORMAT_LONG_LONG=1 \
+ -I${SQLITE_DIR}/include \
  -I${OPENSSL_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
  -I${NCURSES_DIR}/include/"
+
+ export CPPFLAGS="-I${SQLITE_DIR}/include \
+  -I${ZLIB_DIR}/include/ \
+  -I${BZIP_DIR}/include/ \
+  -I${READLINE_DIR}/include/ \
+  -I${NCURSES_DIR}/include/"
+
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${OPENSSL_DIR}/lib \
