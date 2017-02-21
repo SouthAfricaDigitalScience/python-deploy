@@ -12,9 +12,8 @@ module add openssl/1.0.2g
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
-export CXXFLAGS='-g3 -fsanitize=undefined -fno-sanitize=vptr -DPY_FORMAT_LONG_LONG="11"'
-export CFLAGS='-fsanitize=undefined \
- -DPY_FORMAT_LONG_LONG="11" \
+export CXXFLAGS='-g3 -DPY_FORMAT_LONG_LONG="11"'
+export CFLAGS='-DPY_FORMAT_LONG_LONG="11" \
  -I${SQLITE_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
