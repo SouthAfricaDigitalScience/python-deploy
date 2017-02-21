@@ -8,7 +8,7 @@ module add tcltk
 module add sqlite
 module add readline
 module add ncurses
-module add openssl/1.0.2g
+module add openssl/1.0.2j
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
