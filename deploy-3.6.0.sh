@@ -32,9 +32,9 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
 --with-system-ffi \
---with-tcltk-includes=${TCL_DIR}/include \
---with-tcltk-libs=${TCL_DIR}/lib \
+--with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl"
 --with-ensurepip=upgrade
+make
 # "Warning
 # make install can overwrite or masquerade the python binary. make altinstall is therefore recommended instead of make install since it
 # only installs exec_prefix/bin/pythonversion.
@@ -73,8 +73,8 @@ cp modules/${VERSION}-gcc-${GCC_VERSION} ${LIBRARIES_MODULES}/${NAME}
 module avail ${NAME}
 module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"
-which python3
-python3 --version
+which python${VERSION_MAJOR}
+python3${VERSION_MAJOR} --version
 
 ## run some checks
 echo "PYTHONHOME is $PYTHONHOME"
@@ -82,3 +82,5 @@ echo "checking easy_install and pip"
 
 which easy_install-${VERSION_MAJOR}
 which pip${VERSION_MAJOR}
+
+pip${VERSION_MAJOR} install -r requirements.txt

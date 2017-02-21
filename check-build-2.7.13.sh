@@ -3,11 +3,10 @@
 module load ci
 module add zlib
 module add bzip2
-module add tcltk
 module add sqlite
 module add readline
 module add ncurses
-module add openssl/1.0.2g
+module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
@@ -55,7 +54,7 @@ module avail ${NAME}
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
-python --version
+python${VERSION_MAJOR} --version
 ## run some checks
 echo "checking easy_install and pip"
 

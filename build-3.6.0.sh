@@ -4,11 +4,11 @@ SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
 module add zlib
 module add bzip2
-module add tcltk
+#module add tcltk
 module add sqlite
 module add readline
 module add ncurses
-module add openssl/1.0.2g
+module add openssl/1.0.2j
 module add gcc/${GCC_VERSION}
 
 echo ${SOFT_DIR}
@@ -38,25 +38,33 @@ tar -xz --keep-newer-files -f ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
+
 export CFLAGS="-I${SQLITE_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
- -I${TCL_DIR}/include/ \
  -I${NCURSES_DIR}/include/"
+
+ export CPPFLAGS="-I${SQLITE_DIR}/include \
+  -I${ZLIB_DIR}/include/ \
+  -I${BZIP_DIR}/include/ \
+  -I${READLINE_DIR}/include/ \
+  -I${NCURSES_DIR}/include/"
+
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${ZLIB_DIR}/lib/ \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
--L${TCL_DIR}/lib/ \
 -L${NCURSES_DIR}/lib/"
+
+# --with-tcltk-includes="-I${TCL_DIR}/include" \
+# --with-tcltk-libs="-L${TCL_DIR}/lib -ltcltk" \
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
 --with-system-ffi \
---with-tcltk-includes=${TCL_DIR}/include \
---with-tcltk-libs=${TCL_DIR}/lib \
+--with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl"
 --with-ensurepip=upgrade
 make
