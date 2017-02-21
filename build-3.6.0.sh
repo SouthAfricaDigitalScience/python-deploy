@@ -58,9 +58,6 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${OPENSSL_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 
-# --with-tcltk-includes="-I${TCL_DIR}/include" \
-# --with-tcltk-libs="-L${TCL_DIR}/lib -ltcltk" \
-
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --disable-ipv6 \
 --enable-shared \
