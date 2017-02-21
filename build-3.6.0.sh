@@ -38,9 +38,8 @@ tar -xz --keep-newer-files -f ${SRC_DIR}/${SOURCE_FILE} -C ${WORKSPACE}
 cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
-export CXXFLAGS='-g3 -fsanitize=undefined -fno-sanitize=vptr -DPY_FORMAT_LONG_LONG="11"'
-export CFLAGS='-fsanitize=undefined \
- -DPY_FORMAT_LONG_LONG="11" \
+export CXXFLAGS=-DPY_FORMAT_LONG_LONG="11"
+export CFLAGS='-DPY_FORMAT_LONG_LONG="11" \
  -I${SQLITE_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
