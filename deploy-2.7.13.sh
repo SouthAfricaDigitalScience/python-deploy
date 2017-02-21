@@ -11,16 +11,14 @@ module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 
-export CXXFLAGS="-g3 -fsanitize=undefined -fno-sanitize=vptr -DPY_FORMAT_LONG_LONG=1"
-export CFLAGS="
- -fsanitize=undefined \
- -DPY_FORMAT_LONG_LONG=1 \
+export CXXFLAGS='-g3 -fsanitize=undefined -fno-sanitize=vptr -DPY_FORMAT_LONG_LONG="11"'
+export CFLAGS='-fsanitize=undefined \
+ -DPY_FORMAT_LONG_LONG="11" \
  -I${SQLITE_DIR}/include \
- -I${OPENSSL_DIR}/include \
  -I${ZLIB_DIR}/include/ \
  -I${BZIP_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
- -I${NCURSES_DIR}/include/"
+ -I${NCURSES_DIR}/include/'
 
  export CPPFLAGS="-I${SQLITE_DIR}/include \
   -I${ZLIB_DIR}/include/ \
@@ -28,12 +26,11 @@ export CFLAGS="
   -I${READLINE_DIR}/include/ \
   -I${NCURSES_DIR}/include/"
 
-
 export LDFLAGS="-L${SQLITE_DIR}/lib \
--L${OPENSSL_DIR}/lib \
 -L${ZLIB_DIR}/lib/ \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
+-L${OPENSSL_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 
 rm -rf *
@@ -42,7 +39,7 @@ rm -rf *
 --enable-shared \
 --enable-loadable-sqlite-extensions \
 --with-system-ffi \
---with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl"
+--with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
 --with-ensurepip=upgrade
 make
 
