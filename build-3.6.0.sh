@@ -58,7 +58,8 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
  -L${NCURSES_DIR}/lib/"
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
---build=x86_64-linux-gnu \
+--build=x86_64-unknown-linux-gnu \
+--with-universal-archs=${ARCH} \
 --disable-ipv6 \
 --enable-shared \
 --enable-loadable-sqlite-extensions \

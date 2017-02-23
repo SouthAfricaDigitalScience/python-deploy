@@ -59,7 +59,6 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 --build=x86_64-linux-gnu \
 --disable-ipv6 \
 --enable-shared \
---enable-loadable-sqlite-extensions \
 --with-system-ffi \
 --with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
 --with-ensurepip=upgrade
