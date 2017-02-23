@@ -38,7 +38,7 @@ cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
 
-export CFLAGS="-DPY_FORMAT_LONG_LONG='11' \
+export CFLAGS="-DPY_FORMAT_LONG_LONG=8 \
   -I${SQLITE_DIR}/include \
   -I${ZLIB_DIR}/include/ \
   -I${BZIP_DIR}/include/ \

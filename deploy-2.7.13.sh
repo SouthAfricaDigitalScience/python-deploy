@@ -11,7 +11,7 @@ module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 
-export CFLAGS="-DPY_FORMAT_LONG_LONG='11' \
+export CFLAGS="-DPY_FORMAT_LONG_LONG=8 \
    -I${SQLITE_DIR}/include \
    -I${ZLIB_DIR}/include/ \
    -I${BZIP_DIR}/include/ \
