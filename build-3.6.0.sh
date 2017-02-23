@@ -38,8 +38,7 @@ cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
 
-export CFLAGS="-DPY_FORMAT_LONG_LONG=8 \
-  -I${SQLITE_DIR}/include \
+export CFLAGS="-I${SQLITE_DIR}/include \
   -I${ZLIB_DIR}/include/ \
   -I${BZIP_DIR}/include/ \
   -I${READLINE_DIR}/include/ \
@@ -59,6 +58,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
  -L${NCURSES_DIR}/lib/"
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--build=x86_64-linux-gnu \
 --disable-ipv6 \
 --enable-shared \
 --enable-loadable-sqlite-extensions \

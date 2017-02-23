@@ -12,8 +12,7 @@ module add openssl/1.0.2j
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
-export CFLAGS="-DPY_FORMAT_LONG_LONG=8 \
-   -I${SQLITE_DIR}/include \
+export CFLAGS="-I${SQLITE_DIR}/include \
    -I${ZLIB_DIR}/include/ \
    -I${BZIP_DIR}/include/ \
    -I${READLINE_DIR}/include/ \
@@ -33,6 +32,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
+--build=x86_64-linux-gnu \
 --disable-ipv6 \
 --enable-shared \
 --enable-loadable-sqlite-extensions \
