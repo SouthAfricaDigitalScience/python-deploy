@@ -18,7 +18,7 @@ export VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
 export CFLAGS="-I${SQLITE_DIR}/include \
   -I${OPENSSL_DIR}/include \
  -I${ZLIB_DIR}/include/ \
- -I${BZIP_DIR}/include/ \
+ -I${BZLIB_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
  -I${TCL_DIR}/include/ \
  -I${NCURSES_DIR}/include/"

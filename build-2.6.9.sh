@@ -41,7 +41,7 @@ cd build-${BUILD_NUMBER}
 export CFLAGS="-I${SQLITE_DIR}/include \
  -I${OPENSSL_DIR}/include \
  -I${ZLIB_DIR}/include/ \
- -I${BZIP_DIR}/include/ \
+ -I${BZLIB_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
  -I${TCL_DIR}/include/ \
  -I${NCURSES_DIR}/include/"
