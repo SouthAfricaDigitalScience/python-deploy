@@ -12,12 +12,12 @@ module add openssl/1.0.2j
 module add gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 rm -rf *
-export CFLAGS="-DPY_FORMAT_LONG_LONG=11 \
- -I${SQLITE_DIR}/include \
- -I${ZLIB_DIR}/include/ \
- -I${BZIP_DIR}/include/ \
- -I${READLINE_DIR}/include/ \
- -I${NCURSES_DIR}/include/"
+export CFLAGS="-DPY_FORMAT_LONG_LONG='11' \
+   -I${SQLITE_DIR}/include \
+   -I${ZLIB_DIR}/include/ \
+   -I${BZIP_DIR}/include/ \
+   -I${READLINE_DIR}/include/ \
+   -I${NCURSES_DIR}/include/"
 
  export CPPFLAGS="-I${SQLITE_DIR}/include \
   -I${ZLIB_DIR}/include/ \
@@ -31,7 +31,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${READLINE_DIR}/lib/ \
 -L${OPENSSL_DIR}/lib \
 -L${NCURSES_DIR}/lib/"
-rm -rf *
+
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --disable-ipv6 \
 --enable-shared \
