@@ -79,7 +79,7 @@ module avail ${NAME}
 module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"
 which python${VERSION_MAJOR}
-python3${VERSION_MAJOR} --version
+python${VERSION_MAJOR} --version
 
 ## run some checks
 echo "PYTHONHOME is $PYTHONHOME"
