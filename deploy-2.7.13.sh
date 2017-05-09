@@ -2,7 +2,6 @@
 . /etc/profile.d/modules.sh
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add deploy
-module add zlib
 module add bzip2
 module add sqlite
 module add readline
@@ -12,19 +11,16 @@ module add  gcc/${GCC_VERSION}
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
 
 export CFLAGS="-I${SQLITE_DIR}/include \
-   -I${ZLIB_DIR}/include/ \
    -I${BZLIB_DIR}/include/ \
    -I${READLINE_DIR}/include/ \
    -I${NCURSES_DIR}/include/"
 
  export CPPFLAGS="-I${SQLITE_DIR}/include \
-  -I${ZLIB_DIR}/include/ \
   -I${BZLIB_DIR}/include/ \
   -I${READLINE_DIR}/include/ \
   -I${NCURSES_DIR}/include/"
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
--L${ZLIB_DIR}/lib/ \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
 -L${OPENSSL_DIR}/lib \
@@ -73,8 +69,8 @@ MODULE_FILE
 
 # this should probably be in $PYTHON_MODULES instead of $LIBRARY_MODULES
 
-mkdir -p ${LIBRARIES_MODULES}/${NAME}
-cp modules/${VERSION}-gcc-${GCC_VERSION} ${LIBRARIES_MODULES}/${NAME}
+mkdir -p ${LIBRARIES}/${NAME}
+cp modules/${VERSION}-gcc-${GCC_VERSION} ${LIBRARIES}/${NAME}
 module avail ${NAME}
 module add python/${VERSION}-gcc-${GCC_VERSION}
 echo "Our python is"

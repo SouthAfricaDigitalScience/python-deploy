@@ -1,13 +1,12 @@
 #!/bin/bash -e
 . /etc/profile.d/modules.sh
 module load ci
-module add zlib
 module add bzip2
 module add tcltk
 module add sqlite
 module add readline
 module add ncurses
-module add openssl/1.0.2g
+module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
@@ -49,8 +48,8 @@ prepend-path LDFLAGS           "-L$::env(PYTHON_DIR)/lib"
 MODULE_FILE
 ) > modules/$VERSION-gcc-${GCC_VERSION}
 
-mkdir -p $LIBRARIES_MODULES/$NAME
-cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES_MODULES/$NAME
+mkdir -p $LIBRARIES/$NAME
+cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES/$NAME
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
 which python

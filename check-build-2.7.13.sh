@@ -1,7 +1,6 @@
 #!/bin/bash -e
 . /etc/profile.d/modules.sh
 module load ci
-module add zlib
 module add bzip2
 module add sqlite
 module add readline
@@ -48,8 +47,8 @@ prepend-path LDFLAGS                  "-L$::env(PYTHON_DIR)/lib"
 MODULE_FILE
 ) > modules/$VERSION-gcc-${GCC_VERSION}
 
-mkdir -p $LIBRARIES_MODULES/$NAME
-cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES_MODULES/$NAME
+mkdir -p $LIBRARIES/$NAME
+cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES/$NAME
 module avail ${NAME}
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"

@@ -25,8 +25,9 @@ Versions:
 
 ## GCC versions
 
-  * 4.9.2
-  * 5.1.0
+  * 4.9.4
+  * 5.4.0
+  * 6.3.0
 
 # Configuration
 

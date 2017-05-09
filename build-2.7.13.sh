@@ -2,7 +2,6 @@
 . /etc/profile.d/modules.sh
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
-module add zlib
 module add bzip2
 module add sqlite
 module add readline
@@ -37,19 +36,16 @@ cd ${WORKSPACE}/Python-${VERSION}
 mkdir build-${BUILD_NUMBER}
 cd build-${BUILD_NUMBER}
 export CFLAGS="-DPY_HAVE_LONG_LONG -I${SQLITE_DIR}/include \
-   -I${ZLIB_DIR}/include/ \
-   -I${B_DIR}/include/ \
+   -I${BZLIB_DIR}/include/ \
    -I${READLINE_DIR}/include/ \
    -I${NCURSES_DIR}/include/"
 
  export CPPFLAGS="-I${SQLITE_DIR}/include \
-  -I${ZLIB_DIR}/include/ \
   -I${BZLIB_DIR}/include/ \
   -I${READLINE_DIR}/include/ \
   -I${NCURSES_DIR}/include/"
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
--L${ZLIB_DIR}/lib/ \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
 -L${OPENSSL_DIR}/lib \

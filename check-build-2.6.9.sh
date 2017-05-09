@@ -1,13 +1,12 @@
 #!/bin/bash -e
 . /etc/profile.d/modules.sh
 module load ci
-module add zlib
 module add bzip2
 module add tcltk
 module add sqlite
 module add readline
 module add ncurses
-module add openssl/1.0.2g
+module add openssl/1.0.2j
 module add  gcc/${GCC_VERSION}
 echo "checking $NAME"
 cd ${WORKSPACE}/Python-${VERSION}/build-${BUILD_NUMBER}
@@ -17,7 +16,6 @@ export VERSION_MAJOR=${VERSION:0:3} # Should be 2.7 or 3.4 or similar
 
 export CFLAGS="-I${SQLITE_DIR}/include \
   -I${OPENSSL_DIR}/include \
- -I${ZLIB_DIR}/include/ \
  -I${BZLIB_DIR}/include/ \
  -I${READLINE_DIR}/include/ \
  -I${TCL_DIR}/include/ \
@@ -25,7 +23,6 @@ export CFLAGS="-I${SQLITE_DIR}/include \
 
 export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${OPENSSL_DIR}/lib \
--L${ZLIB_DIR}/lib/ \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
 -L${TCL_DIR}/lib/ \
@@ -69,8 +66,8 @@ prepend-path LDFLAGS           "-L$::env(PYTHON_DIR)/lib"
 MODULE_FILE
 ) > modules/$VERSION-gcc-${GCC_VERSION}
 
-mkdir -p $LIBRARIES_MODULES/$NAME
-cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES_MODULES/$NAME
+mkdir -p $LIBRARIES/$NAME
+cp modules/$VERSION-gcc-${GCC_VERSION} $LIBRARIES/$NAME
 module add python/$VERSION-gcc-${GCC_VERSION}
 echo "Our python is"
 which python
