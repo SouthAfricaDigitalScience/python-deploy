@@ -53,7 +53,6 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --build=x86_64-unknown-linux-gnu \
---with-system-zlib \
 --disable-ipv6 \
 --enable-shared \
 --with-system-ffi \
