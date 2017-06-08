@@ -49,14 +49,16 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 -L${BZLIB_DIR}/lib/ \
 -L${READLINE_DIR}/lib/ \
 -L${OPENSSL_DIR}/lib \
--L${NCURSES_DIR}/lib/"
+-L${NCURSES_DIR}/lib/ \
+-lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl"
+
 
 ../configure --prefix=${SOFT_DIR}-gcc-${GCC_VERSION} \
 --build=x86_64-unknown-linux-gnu \
 --disable-ipv6 \
 --enable-shared \
 --with-system-ffi \
---with-libs="-lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
---with-ensurepip=upgrade
+# --with-libs="-lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
+  --with-ensurepip=upgrade
 
 make
