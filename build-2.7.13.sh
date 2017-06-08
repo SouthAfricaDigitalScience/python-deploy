@@ -56,7 +56,7 @@ export LDFLAGS="-L${SQLITE_DIR}/lib \
 --disable-ipv6 \
 --enable-shared \
 --with-system-ffi \
---with-libs="-lz -lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
+--with-libs="-lbz2 -lreadline -lncurses -lhistory -lsqlite3 -lssl" \
 --with-ensurepip=upgrade
 
 make
