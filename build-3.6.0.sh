@@ -3,7 +3,7 @@
 SOURCE_FILE=${NAME}-${VERSION}.tar.gz
 module add ci
 module add bzip2
-#module add tcltk
+module add tcltk
 module add sqlite
 module add readline
 module add ncurses
