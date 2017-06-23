@@ -59,5 +59,6 @@ echo "checking easy_install and pip"
 
 which easy_install-${VERSION_MAJOR}
 which pip${VERSION_MAJOR}
-
+pip${VERSION_MAJOR} install -U pip
+pip${VERSION_MAJOR} install -r ${WORKSPACE}/requirements.txt
 # Send a message to say we good.
