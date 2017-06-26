@@ -35,6 +35,11 @@ proc ModulesHelp { } {
 }
 conflict python
 module add gcc/${GCC_VERSION}
+module add bzip2
+module add sqlite
+module add readline
+module add ncurses
+module add openssl/1.0.2j
 module-whatis   "$NAME $VERSION. compiled  for GCC ${GCC_VERSION}"
 setenv       PYTHON_VERSION         $VERSION
 setenv       PYTHON_DIR                 /data/ci-build/$::env(SITE)/$::env(OS)/$::env(ARCH)/$NAME/$VERSION-gcc-${GCC_VERSION}
