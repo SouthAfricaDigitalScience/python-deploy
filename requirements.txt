@@ -6,3 +6,4 @@ virtualenv
 python-dateutil
 certifi
 cython
+nose
